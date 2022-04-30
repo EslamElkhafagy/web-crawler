@@ -93,7 +93,7 @@ public class WebCrawlerProcessor {
         CompletableFuture
                 .supplyAsync(() -> downloadPageContentService.downloadPageContents(url),
                         ioBoundExecutorService)
-                .thenApply(contentInfo -> applyTitleAndReturnLinks(contentInfo, thisParentNode, breadth)) // set title info on to the parent and limit the results by breadth
+                .thenApply(contentInfo -> downloadPageContentService.applyTitleAndReturnLinks(contentInfo, thisParentNode, breadth)) // set title info on to the parent and limit the results by breadth
                 .thenApply(crawlFurtherAndLinkToParentNode(depth, breadth, alreadCrawledURLStore,
                         thisParentNode))    // For each page links fetch the details recursively and set to parent node
                 .thenApply(futures -> futures.toArray(CompletableFuture[]::new)) //Combine all futures for the page links
@@ -106,18 +106,6 @@ public class WebCrawlerProcessor {
 
         return thisParentNode;
 
-    }
-
-    private Set<String> applyTitleAndReturnLinks(final URLContentInfo contents, final ApiModelCrawlerNode parentNode,
-                                                 final int breadth) {
-
-        //Set the title to the parent
-        parentNode.setTitle(contents.getTitle());
-        //Limit the page links by breadth limit
-        if(breadth==-1)
-            return contents.getLinkNodes().stream().collect(Collectors.toSet());
-
-        return contents.getLinkNodes().stream().limit(breadth).collect(Collectors.toSet());
     }
 
     private Function<Set<String>, Stream<CompletableFuture<ApiModelCrawlerNode>>> crawlFurtherAndLinkToParentNode(

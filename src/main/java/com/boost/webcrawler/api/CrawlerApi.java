@@ -4,7 +4,6 @@ package com.boost.webcrawler.api;
 import com.boost.webcrawler.exception.BusinessExcption;
 import com.boost.webcrawler.exception.ErrorResponse;
 import com.boost.webcrawler.model.ApiModelCrawlerNode;
-import com.sun.istack.internal.NotNull;
 import io.swagger.annotations.*;
 
 import org.springframework.http.ResponseEntity;
@@ -13,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import javax.validation.constraints.NotNull;
 import java.net.URISyntaxException;
 
 public interface CrawlerApi {

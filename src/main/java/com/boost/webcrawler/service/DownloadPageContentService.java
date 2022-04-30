@@ -3,9 +3,11 @@ package com.boost.webcrawler.service;
 
 
 import java.util.Optional;
+import java.util.Set;
 import java.util.stream.Collectors;
 
 import com.boost.webcrawler.dao.DomainRepository;
+import com.boost.webcrawler.model.ApiModelCrawlerNode;
 import com.boost.webcrawler.model.Domain;
 import com.boost.webcrawler.model.URLContentInfo;
 import com.boost.webcrawler.utils.DomainUtils;
@@ -87,6 +89,18 @@ public class DownloadPageContentService {
             return urlContent;
         }
 
+    }
+
+    public Set<String> applyTitleAndReturnLinks(final URLContentInfo contents, final ApiModelCrawlerNode parentNode,
+                                                 final int breadth) {
+
+        //Set the title to the parent
+        parentNode.setTitle(contents.getTitle());
+        //Limit the page links by breadth limit
+        if(breadth==-1)
+            return contents.getLinkNodes().stream().collect(Collectors.toSet());
+
+        return contents.getLinkNodes().stream().limit(breadth).collect(Collectors.toSet());
     }
 
     private  void saveOrUpdateDomainCount(String clearDomain){

@@ -9,11 +9,11 @@ it's simple web crawler in Spring Boot. The crawler should be limited to one dom
 * Remote Service Protocol REST
 * Testing/ Stubbing Junit, Mockito
 * Build Maven
-*Framework: Spring Boot
-*Database: MySQL
-*Docker
-*jsoup
-*caching
+* Framework: Spring Boot
+* Database: MySQL
+* Docker
+* jsoup
+* caching
 
 	
 ## Test Coverage

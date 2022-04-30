@@ -16,6 +16,16 @@ it's simple web crawler in Spring Boot. The crawler should be limited to one dom
 *caching
 
 	
+## Test Coverage
+
+### Using IDE
+*make sure that java version >= java 8 is installed
+*clone Repository : https://github.com/EslamElkhafagy/web-crawler
+*make sure that maven is installed and run mvn clean install
+*install mysql database
+*create crawler schema (CREATE SCHEMA `crawler` DEFAULT CHARACTER SET utf8 ;) 
+*update user&pass at aplication.yml file
+*Running the Project
 
 ## Test Coverage
 
